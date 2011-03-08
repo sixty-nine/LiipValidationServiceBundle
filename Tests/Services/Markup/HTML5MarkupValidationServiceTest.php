@@ -49,14 +49,16 @@ class HTML5MarkupValidationServiceTest extends \PHPUnit_Framework_TestCase
         $res = $service->validateString('<!DOCTYPE html><html><head><title/></head><body><h1>Hello test</h1>');
         $this->assertFalse($res->getIsValid());
         $this->assertEquals(3, count($res->getMessages()));
-        $message = reset($res->getMessages());
+        $message = $res->getMessages();
+        $message = $message[0];
         $this->assertNotEquals(0, preg_match('/element/', $message->getMessage()));
 
         $service = new Services\Markup\HTML5MarkupValidationService($filter);
         $res = $service->validateString('<!DOCTYPE html><html><head><title/></head><body><h1>Hello test</h1>');
         $this->assertFalse($res->getIsValid());
         $this->assertEquals(1, count($res->getMessages()));
-        $message = reset($res->getMessages());
+        $message = $res->getMessages();
+        $message = $message[0];
         $this->assertEquals(0, preg_match('/element/', $message->getMessage()));
 
         $service = new Services\Markup\HTML5MarkupValidationService($error_filter);

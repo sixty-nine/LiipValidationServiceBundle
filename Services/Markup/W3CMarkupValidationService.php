@@ -75,7 +75,10 @@ class W3CMarkupValidationService extends AbstractValidationService
      */
     public function validateString($html)
     {
-        $res = $this->validator_service->validateFragment($html);
+        $res = false;
+        if ($html) {
+            $res = $this->validator_service->validateFragment($html);
+        }
         return $this->buildResults($res);
     }
     

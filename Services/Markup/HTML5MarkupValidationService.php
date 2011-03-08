@@ -84,7 +84,13 @@ class HTML5MarkupValidationService extends AbstractValidationService
                 if ($row->type === 'info') {
                     $msg = new ValidationMessage(0, 0, $row->message, '', $row->type);
                 } else {
-                    $msg = new ValidationMessage($row->lastLine, $row->lastColumn, $row->message, $row->extract, $row->type);
+                    $msg = new ValidationMessage(
+                        isset($row->lastLine) ? $row->lastLine : 0,
+                        isset($row->lastColumn) ? $row->lastColumn : 0,
+                        isset($row->message) ? $row->message : '',
+                        isset($row->extract) ? $row->extract : '',
+                        isset($row->type) ? $row->type : ''
+                    );
                 }
                 if (! $this->result_filter || $this->result_filter->filter($msg)) {
                     $result->addMessage($msg);
