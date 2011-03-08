@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+        
+    <parameters>
+
+        <parameter key="validation_service.html5validation.url">http://validator.nu/</parameter>
+
+        <parameter key="validation_service.html5validation.show_errors">true</parameter>
+
+        <parameter key="validation_service.html5validation.ignores" type="collection" />
+
+        <parameter key="validation_service.html5validation.ignores_extract" type="collection" />
+
+        <parameter key="validation_service.html5validation.ignore_levels" type="collection">
+            <parameter>info</parameter>
+            <parameter>warning</parameter>
+        </parameter>
+
+        <parameter key="validation_service.authentication" type="collection">
+            <parameter key="username"></parameter>
+            <parameter key="password"></parameter>
+        </parameter>
+
+    </parameters>
+
+</container>

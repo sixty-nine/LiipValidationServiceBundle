@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <!-- Validation results filters -->
+
+        <service id="validation_service.validation_filter.ignore_info_and_warning" class="Liip\FunctionalTestBundle\Helper\Validation\Filters\LevelFilter">
+            <argument id="ignored_levels">%validation_service.html5validation.ignore_levels%</argument>
+        </service>
+
+        <service id="validation_service.validation_filter.ignore_on_source" class="Liip\FunctionalTestBundle\Helper\Validation\Filters\RegExpFilter">
+            <argument>%validation_service.html5validation.ignores_extract%</argument>
+            <argument>source</argument>
+        </service>
+
+        <service id="validation_service.validation_filter.ignore_on_message" class="Liip\FunctionalTestBundle\Helper\Validation\Filters\RegExpFilter">
+            <argument>%validation_service.html5validation.ignores%</argument>
+        </service>
+
+        <service id="validation_service.validation_filter" class="Liip\FunctionalTestBundle\Helper\Validation\Filters\FilterChain">
+            <call method="addFilter">
+                <argument type="service" id="validation_service.validation_filter.ignore_info_and_warning" />
+            </call>
+            <call method="addFilter">
+                <argument type="service" id="validation_service.validation_filter.ignore_on_message" />
+            </call>
+            <call method="addFilter">
+                <argument type="service" id="validation_service.validation_filter.ignore_on_source" />
+            </call>
+        </service>
+
+        <!-- Validation services -->
+
+        <service id="validation_service.markup_validation_service" class="Liip\FunctionalTestBundle\Helper\HTML5MarkupValidator" >
+
+            <call method="setValidatorUri">
+                <argument id="uri">%validation_service.html5validation.url%</argument>
+            </call>
+
+            <call method="setIgnoresInError">
+                <argument>%validation_service.html5validation.ignores%</argument>
+            </call>
+
+            <call method="setIgnoresInSource">
+                <argument>%validation_service.html5validation.ignores_extract%</argument>
+            </call>
+
+        </service>
+
+    </services>
+
+</container>
