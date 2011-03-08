@@ -1,0 +1,43 @@
+{% extends "LiipValidationServiceBundle::layout.html.twig" %}
+
+{% block content %}
+    {{ parent() }}
+
+    <h1>Liip Validation Service Bundle Demo</h1>
+    <h2>About</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec felis augue. Cras aliquet quam condimentum libero varius posuere. Sed porttitor, lacus vel pharetra pharetra, velit sem sollicitudin lectus, in semper metus urna at nisi. Maecenas enim sem, lobortis dapibus imperdiet at, vestibulum eu ipsum. Nullam ac purus nisi. Aliquam venenatis ultricies ante, egestas ultricies felis hendrerit in. Nullam ipsum urna, sollicitudin et dapibus et, porttitor ut arcu.
+    </p>
+
+    <h2>Try it !</h2>
+    <form action="" method="POST">
+        <fieldset>
+            {{ form_field(form) }}
+            <br/>
+            <input type="submit" value="Send" />
+        </fieldset>
+    </form>
+
+    {% if results %}
+    <h2>Validation results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Line</th>
+                <th>Type</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        {% for msg in results.messages %}
+        <tr>
+            <td>Line {{ msg.line }}</td>
+            <td>{{ msg.level | upper }}</td>
+            <td>{{ msg.message }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+{% endblock %}
+
+{% set code = code(_self) %}

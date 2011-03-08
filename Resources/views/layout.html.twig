@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" type="text/css" media="all" /> 
+        <link rel="stylesheet" href="{{ asset('bundles/liipvalidationservice/css/demo.css') }}" type="text/css" media="all" />
+        <title>{% block title %}Demo Bundle{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <div id="symfony-wrapper">
+            <div id="symfony-header">
+                <a href="{{ path('_welcome') }}">
+                    <img src="http://www.liip.ch/themes/liip/images/logo-liip.gif" alt="Symfony">
+                </a>
+            </div>
+
+            <div class="symfony-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+        </div>
+    </body>
+</html>
