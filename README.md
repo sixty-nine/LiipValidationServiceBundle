@@ -27,30 +27,30 @@ Installation
 
   3. Add the Liip namespace to your autoload.php:
 
-        // app/autoload.php
-        $loader->registerNamespaces(array(
-            // ...
-            'Liip'                         => __DIR__.'/../src',
-            // ...
-        ));
+            // app/autoload.php
+            $loader->registerNamespaces(array(
+                // ...
+                'Liip'                         => __DIR__.'/../src',
+                // ...
+            ));
 
-  4. Configure the `functionalTest` service in your config:
+  4. Configure the `ValidationService` services in your config:
 
           # app/config/config.yml
           liip_validation_service: ~
 
   5. Add the validation service demo routes
 
-        # app/config/routing.yml
-        _liip_validation_service_demo:
-            resource: "@LiipValidationServiceBundle/Controller/DemoController.php"
-            type:     annotation
-            prefix:   /_validator
+            # app/config/routing.yml
+            _liip_validation_service_demo:
+                resource: "@LiipValidationServiceBundle/Controller/DemoController.php"
+                type:     annotation
+                prefix:   /_validator
 
   6. Install Services_W3C_HTMLValidator and Services_W3C_CSSValidator pear packages
 
-        pear install Services_W3C_HTMLValidator
-        pear install Services_W3C_CSSValidator
+            pear install Services_W3C_HTMLValidator
+            pear install Services_W3C_CSSValidator
 
   7. Optional: Install local copy of the HTML5 validator
 
