@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 
-class ValidationServiceExtension extends Extension
+class LiipValidationServiceExtension extends Extension
 {
     /**
      * Loads the services based on your application configuration.
@@ -33,6 +33,6 @@ class ValidationServiceExtension extends Extension
 
     public function getAlias()
     {
-        return 'validation_service';
+        return 'liip_validation_service';
     }
 }
