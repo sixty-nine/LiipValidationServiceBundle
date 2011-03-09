@@ -1,11 +1,20 @@
 <?php
 
+/*
+ * This file is part of the Liip/ValidationServiceBundle
+ *
+ * Copyright (c) 2010-2011 Liip
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Liip\ValidationServiceBundle\Services\Css;
 
 use Liip\ValidationServiceBundle\Services\AbstractValidationService;
 use Liip\ValidationServiceBundle\Results\ValidationMessage;
 use Liip\ValidationServiceBundle\Results\ValidationResult;
-use Liip\ValidationServiceBundle\Helper\Validation\DocumentWrapper;
+use Liip\ValidationServiceBundle\Helper\DocumentWrapper;
 use Liip\ValidationServiceBundle\Filters\IFilter;
 
 
