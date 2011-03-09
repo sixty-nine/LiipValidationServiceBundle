@@ -54,7 +54,7 @@ Installation
 
   7. Optional: Install local copy of the HTML5 validator
 
-         More information see below
+        More information see below
 
   8. Optional: Installl local copy of the JavascriptLint validator
 
@@ -64,15 +64,15 @@ Installation
 HTML5 validator
 ---------------
 
-The on-line validator: http://validator.nu/
-The documentation: http://about.validator.nu/
-Documentation about the web service: http://wiki.whatwg.org/wiki/Validator.nu_Web_Service_Interface
+- The on-line validator: http://validator.nu/
+- The documentation: http://about.validator.nu/
+- Documentation about the web service: http://wiki.whatwg.org/wiki/Validator.nu_Web_Service_Interface
 
 JavascriptLint validator
 ------------------------
 
-The documentation: http://www.javascriptlint.com/
-The download page: http://www.javascriptlint.com/download.htm
+- The documentation: http://www.javascriptlint.com/
+- The download page: http://www.javascriptlint.com/download.htm
 
 TODO
 ----
