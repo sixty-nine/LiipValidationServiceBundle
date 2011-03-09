@@ -20,6 +20,12 @@ use Liip\ValidationServiceBundle\Filters\IFilter;
 /**
  * EXPERIMENTAL !!!
  *
+ * Javascript validation service based on http://www.javascriptlint.com/
+ *
+ * You need the JavascriptLint binary to use this class, see http://www.javascriptlint.com/download.htm
+ *
+ * By default this validator looks for the jsl binary in Resources/bin, you can change this with setJslExecutable
+ *
  * @see IMarkupValidator
  * @author Daniel Barsotti
  */
@@ -33,13 +39,21 @@ class JavascriptLintValidationService extends AbstractValidationService
         $this->jsl_executable = realpath(__DIR__.'/../../Resources/bin').'/jsl';
     }
 
+    public function setJslExecutable($filename)
+    {
+        if (! file_exists($filename)) {
+            throw new \InvalidArgumentException("File '$filename' not found");
+        }
+        $this->jsl_executable = $filename;
+    }
+
     /**
      * Return the availability of the validation service
      * @return boolean
      */
     public function isReady()
     {
-        return \file_exists($this->jsl_executable);
+        return file_exists($this->jsl_executable);
     }
 
     /**
