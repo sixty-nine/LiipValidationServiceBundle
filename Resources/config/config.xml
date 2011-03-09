@@ -6,22 +6,13 @@
         
     <parameters>
 
-        <parameter key="validation_service.html5validation.url">http://validator.nu/</parameter>
+        <parameter key="liip_validation_service.filters.ignores_in_message" type="collection" />
 
-        <parameter key="validation_service.html5validation.show_errors">true</parameter>
+        <parameter key="liip_validation_service.filters.ignores_in_source" type="collection" />
 
-        <parameter key="validation_service.html5validation.ignores" type="collection" />
-
-        <parameter key="validation_service.html5validation.ignores_extract" type="collection" />
-
-        <parameter key="validation_service.html5validation.ignore_levels" type="collection">
+        <parameter key="liip_validation_service.filters.ignores_in_level" type="collection">
             <parameter>info</parameter>
             <parameter>warning</parameter>
-        </parameter>
-
-        <parameter key="validation_service.authentication" type="collection">
-            <parameter key="username"></parameter>
-            <parameter key="password"></parameter>
         </parameter>
 
     </parameters>

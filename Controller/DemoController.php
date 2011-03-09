@@ -24,27 +24,23 @@ class DemoController extends Controller
      */
     public function indexAction()
     {
-        $form = ValidationForm::create($this->get('form.context'), 'contact');
+        $form = ValidationForm::create($this->get('form.context'), 'validation');
 
         $form->bind($this->container->get('request'), $form);
         if ($form->isValid()) {
 
-            switch($form->validator) {
-                case 'xhtml':
-                    $validator = new Services\Markup\W3CMarkupValidationService();
-                    break;
-                case 'css':
-                    $validator = new Services\Css\W3CCssValidationService();
-                    break;
-                case 'js':
-                    $validator = new Services\Javascript\JavascriptLintValidationService();
-                    break;
-                case 'html5':
-                default:
-                    $validator = new Services\Markup\HTML5MarkupValidationService();
-                    break;
-            }
+            $services = array(
+                'xhtml' => 'markup.w3c',
+                'html5' => 'markup.html5',
+                'css' => 'css.w3c',
+                'js' => 'javascript.jsl',
+            );
 
+            if (array_key_exists($form->validator, $services)) {
+                $validator = $this->container->get("liip_validation_service.services." .$services[$form->validator]);
+            } else {
+                $validator = $this->container->get("liip_validation_service.services.markup.html5");
+            }
             
             $res = $validator->validateString($form->document);
         }

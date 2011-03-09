@@ -7,48 +7,37 @@
 
         <!-- Validation results filters -->
 
-        <service id="validation_service.validation_filter.ignore_info_and_warning" class="Liip\FunctionalTestBundle\Helper\Validation\Filters\LevelFilter">
-            <argument id="ignored_levels">%validation_service.html5validation.ignore_levels%</argument>
+        <service id="liip_validation_service.filters.ignore_level" class="Liip\ValidationServiceBundle\Filters\LevelFilter">
+            <argument id="ignored_levels">%liip_validation_service.filters.ignores_in_level%</argument>
         </service>
 
-        <service id="validation_service.validation_filter.ignore_on_source" class="Liip\FunctionalTestBundle\Helper\Validation\Filters\RegExpFilter">
-            <argument>%validation_service.html5validation.ignores_extract%</argument>
+        <service id="liip_validation_service.filters.ignore_source" class="Liip\ValidationServiceBundle\Filters\RegExpFilter">
+            <argument>%liip_validation_service.filters.ignores_in_source%</argument>
             <argument>source</argument>
         </service>
 
-        <service id="validation_service.validation_filter.ignore_on_message" class="Liip\FunctionalTestBundle\Helper\Validation\Filters\RegExpFilter">
-            <argument>%validation_service.html5validation.ignores%</argument>
+        <service id="liip_validation_service.filters.ignore_message" class="Liip\ValidationServiceBundle\Filters\RegExpFilter">
+            <argument>%liip_validation_service.filters.ignores_in_message%</argument>
         </service>
 
-        <service id="validation_service.validation_filter" class="Liip\FunctionalTestBundle\Helper\Validation\Filters\FilterChain">
+        <service id="liip_validation_service.filters.default" class="Liip\ValidationServiceBundle\Filters\FilterChain">
             <call method="addFilter">
-                <argument type="service" id="validation_service.validation_filter.ignore_info_and_warning" />
+                <argument type="service" id="liip_validation_service.filters.ignore_info_and_warning" />
             </call>
             <call method="addFilter">
-                <argument type="service" id="validation_service.validation_filter.ignore_on_message" />
+                <argument type="service" id="liip_validation_service.filters.ignore_on_message" />
             </call>
             <call method="addFilter">
-                <argument type="service" id="validation_service.validation_filter.ignore_on_source" />
+                <argument type="service" id="liip_validation_service.filters.ignore_on_source" />
             </call>
         </service>
 
         <!-- Validation services -->
 
-        <service id="validation_service.markup_validation_service" class="Liip\FunctionalTestBundle\Helper\HTML5MarkupValidator" >
-
-            <call method="setValidatorUri">
-                <argument id="uri">%validation_service.html5validation.url%</argument>
-            </call>
-
-            <call method="setIgnoresInError">
-                <argument>%validation_service.html5validation.ignores%</argument>
-            </call>
-
-            <call method="setIgnoresInSource">
-                <argument>%validation_service.html5validation.ignores_extract%</argument>
-            </call>
-
-        </service>
+        <service id="liip_validation_service.services.markup.html5" class="Liip\ValidationServiceBundle\Services\Markup\HTML5MarkupValidationService" />
+        <service id="liip_validation_service.services.markup.w3c" class="Liip\ValidationServiceBundle\Services\Markup\W3CMarkupValidationService" />
+        <service id="liip_validation_service.services.css.w3c" class="Liip\ValidationServiceBundle\Services\Css\W3CCssValidationService" />
+        <service id="liip_validation_service.services.javascript.jsl" class="Liip\ValidationServiceBundle\Services\Javascript\JavascriptLintValidationService" />
 
     </services>
 
