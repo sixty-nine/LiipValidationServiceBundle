@@ -32,9 +32,14 @@ abstract class AbstractValidationService implements IValidationService {
         $this->result_filter = $filter;
     }
 
+    public function setFilter(IFilter $filter)
+    {
+        $this->result_filter = $filter;
+    }
+
     function getDefaultFragmentWrapper()
     {
-        return '';
+        return '<<CONTENT>>';
     }
 
     /**
