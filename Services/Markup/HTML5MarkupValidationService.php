@@ -43,6 +43,11 @@ class HTML5MarkupValidationService extends AbstractValidationService
         parent::__construct($filter);
     }
 
+    function getDefaultFragmentWrapper()
+    {
+        return DocumentWrapper::HTML5_WRAPPER;
+    }
+
     /**
      * Modify the URI of the validation service
      * @param string $uri The uri of your local validation service
@@ -58,7 +63,7 @@ class HTML5MarkupValidationService extends AbstractValidationService
      */
     public function isReady()
     {
-        $content = DocumentWrapper::wrap('Hello Validator', DocumentWrapper::HTML5_WRAPPER);
+        $content = DocumentWrapper::wrap('Hello Validator', $this->getDefaultFragmentWrapper());
         $res = $this->queryValidator($content, 'POST');
         return ($res === "{\"messages\":[]}\n");
     }

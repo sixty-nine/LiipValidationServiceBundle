@@ -51,6 +51,11 @@ class W3CMarkupValidationService extends AbstractValidationService
         $this->validator_service = new \Services_W3C_HTMLValidator();
     }
 
+    function getDefaultFragmentWrapper()
+    {
+        return DocumentWrapper::XHTML_STRICT_WRAPPER;
+    }
+
     /**
      * Modify the URI of the validation service
      * @param string $uri The uri of your local validation service

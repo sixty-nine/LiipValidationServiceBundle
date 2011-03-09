@@ -32,6 +32,11 @@ abstract class AbstractValidationService implements IValidationService {
         $this->result_filter = $filter;
     }
 
+    function getDefaultFragmentWrapper()
+    {
+        return '';
+    }
+
     /**
      * Filter the results of the validation with the validation filter
      *

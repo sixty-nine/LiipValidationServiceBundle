@@ -42,5 +42,10 @@ interface IValidationService
      */
     function validateString($html);
 
+    /**
+     * Return the default wrapper to transform a document fragment into a valid full document
+     */
+    function getDefaultFragmentWrapper();
+
 }
 // @codeCoverageIgnoreEnd
