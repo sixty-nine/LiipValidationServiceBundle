@@ -11,6 +11,12 @@
 
 namespace Liip\ValidationServiceBundle\Helper;
 
+/**
+ * Provide templates and helpers to wrap code fragments into valid documents
+ *
+ * @author Daniel Barsotti <daniel.barsotti[at]liip.ch>
+ * @copyright (c) 2010-2011 Liip
+ */
 class DocumentWrapper {
 
     /**
@@ -43,6 +49,14 @@ HTML;
 </html>
 HTML;
 
+    /**
+     * Wrap the $fragment with the $template. The '<<CONTENT>>' tag in the $template is replaced
+     * by the $fragment
+     * 
+     * @param string $fragment
+     * @param string $template
+     * @return string
+     */
     public static function wrap($fragment, $template)
     {
         return str_replace('<<CONTENT>>', $fragment, $template);

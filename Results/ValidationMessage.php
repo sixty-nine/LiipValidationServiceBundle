@@ -11,16 +11,44 @@
 
 namespace Liip\ValidationServiceBundle\Results;
 
+/**
+ * A single validation message
+ *
+ * @author Daniel Barsotti <daniel.barsotti[at]liip.ch>
+ * @copyright (c) 2010-2011 Liip
+ */
 class ValidationMessage
 {
+    /**
+     * Message levels
+     */
     const ERROR_MESSAGE = 'error';
     const WARNING_MESSAGE = 'warning';
     const INFO_MESSAGE = 'info';
 
+    /**
+     * @var integer
+     */
     protected $line;
+
+    /**
+     * @var integer
+     */
     protected $column;
+
+    /**
+     * @var string
+     */
     protected $source;
+
+    /**
+     * @var string
+     */
     protected $message;
+
+    /**
+     * @var string
+     */
     protected $level;
 
     public function __construct($line = 0, $column = 0, $message = '', $source = '', $level = ValidationMessage::INFO_MESSAGE)

@@ -13,15 +13,31 @@ namespace Liip\ValidationServiceBundle\Filters;
 
 use Liip\ValidationServiceBundle\Results\ValidationMessage;
 
+/**
+ * Composite ValidationMessage filter allowing to apply several filters to the messages
+ *
+ * @author Daniel Barsotti <daniel.barsotti[at]liip.ch>
+ * @copyright (c) 2010-2011 Liip
+ */
 class FilterChain implements IFilter
 {
+    /**
+     * @var array[IFilter]
+     */
     protected $filters = array();
 
+    /**
+     * Add a new filter to the filter chain
+     * @param IFilter $filter
+     */
     public function addFilter(IFilter $filter)
     {
         $this->filters[] = $filter;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function filter(ValidationMessage $message)
     {
         foreach($this->filters as $filter)

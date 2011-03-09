@@ -12,6 +12,13 @@
 namespace Liip\ValidationServiceBundle\Services;
 
 // @codeCoverageIgnoreStart
+
+/**
+ * Interface for validation services.
+ *
+ * @author Daniel Barsotti <daniel.barsotti[at]liip.ch>
+ * @copyright (c) 2010-2011 Liip
+ */
 interface IValidationService
 {
 
@@ -23,14 +30,14 @@ interface IValidationService
 
     /**
      * Validate a given URI
-     * @param string $uri The URI of the page to validate
+     * @param string $uri The URI to validate
      * @return ValidationResult
      */
     function validateUri($uri);
 
     /**
      * Validate a string
-     * @param string $html The complete HTML document
+     * @param string $html The string to validate
      * @return ValidationResult
      */
     function validateString($html);

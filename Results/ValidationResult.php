@@ -13,6 +13,12 @@ namespace Liip\ValidationServiceBundle\Results;
 
 use Liip\ValidationServiceBundle\Filters\IFilter;
 
+/**
+ * Validation service results
+ *
+ * @author Daniel Barsotti <daniel.barsotti[at]liip.ch>
+ * @copyright (c) 2010-2011 Liip
+ */
 class ValidationResult
 {
     protected $is_valid = false;
@@ -43,7 +49,12 @@ class ValidationResult
     {
         $this->messages[] = $message;
     }
-    
+
+    /**
+     * Filters the messages with a given $filter
+     * 
+     * @param IFilter $filter The filter to apply to the messages
+     */
     public function filter(IFilter $filter)
     {
 

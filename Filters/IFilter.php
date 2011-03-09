@@ -13,6 +13,12 @@ namespace Liip\ValidationServiceBundle\Filters;
 
 use Liip\ValidationServiceBundle\Results\ValidationMessage;
 
+/**
+ * Filter ValidationMessage
+ *
+ * @author Daniel Barsotti <daniel.barsotti[at]liip.ch>
+ * @copyright (c) 2010-2011 Liip
+ */
 interface IFilter
 {
     /**
