@@ -21,6 +21,12 @@ use Liip\ValidationServiceBundle\Filters\IFilter;
 require_once 'Services/W3C/CSSValidator.php';
 
 /**
+ * CSS validation service using http://jigsaw.w3.org/css-validator/
+ *
+ * This class requires the pear Services_W3C_CSSValidator
+ *
+ *      pear install Services_W3C_CSSValidator
+ *
  * @see IMarkupValidator
  * @author Daniel Barsotti
  */
@@ -28,7 +34,10 @@ class W3CCssValidationService extends AbstractValidationService
 {
     protected $validator_service = null;
 
-    public function __construct(IFilter $filter = null)
+   /**
+     * {@inheritdoc}
+     */
+     public function __construct(IFilter $filter = null)
     {
         parent::__construct($filter);
         
@@ -50,7 +59,7 @@ class W3CCssValidationService extends AbstractValidationService
     }
 
     /**
-     * Validate a web page given its URI
+     * Validate a css stylesheet given its URI
      * @param string $uri
      * @return array
      */
@@ -61,20 +70,20 @@ class W3CCssValidationService extends AbstractValidationService
     }
 
     /**
-     * Validate a complete HTML document
+     * Validate a complete css stylesheet
      * @param string $html
      * @return array
      */
-    public function validateString($html)
+    public function validateString($css)
     {
-        $res = $this->validator_service->validateFragment($html);
+        $res = $this->validator_service->validateFragment($css);
         return $this->buildResults($res);
     }
     
     /**
-     * Transform the response of the validator service to a valid IMarkupValidator return array
+     * Transform the response of the validator service to a ValidationResult
      * @param \Services_W3C_HTMLValidator_Response $res
-     * @return array
+     * @return ValidationResult
      */
     protected function buildResults($res)
     {

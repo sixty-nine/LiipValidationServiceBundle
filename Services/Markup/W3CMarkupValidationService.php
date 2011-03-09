@@ -25,8 +25,13 @@ require_once 'Services/W3C/HTMLValidator.php';
  * In case of intensive usage of the validation service,  you are strongly encouraged to install
  * your own instance of the service (see http://validator.w3.org/source/)
  *
+ * This class requires the pear Services_W3C_HTMLValidator
+ *
+ *      pear install Services_W3C_HTMLValidator
+ *
  * @see IMarkupValidator
  * @author Daniel Barsotti
+ * @copyright (c) 2010-2011 Liip
  */
 class W3CMarkupValidationService extends AbstractValidationService
 {
@@ -36,6 +41,9 @@ class W3CMarkupValidationService extends AbstractValidationService
      */
     protected $validator_service = null;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(IFilter $filter = null)
     {
         parent::__construct($filter);
@@ -69,7 +77,7 @@ class W3CMarkupValidationService extends AbstractValidationService
     /**
      * Validate a web page given its URI
      * @param string $uri
-     * @return array
+     * @return ValidationResult
      */
     public function validateUri($uri)
     {
@@ -80,7 +88,7 @@ class W3CMarkupValidationService extends AbstractValidationService
     /**
      * Validate a complete HTML document
      * @param string $html
-     * @return array
+     * @return ValidationResult
      */
     public function validateString($html)
     {
@@ -93,8 +101,8 @@ class W3CMarkupValidationService extends AbstractValidationService
     
     /**
      * Transform the response of the validator service to a valid IMarkupValidator return array
-     * @param \Services_W3C_HTMLValidator_Response $res
-     * @return array
+     * @param Services_W3C_HTMLValidator_Response $res
+     * @return ValidationResult
      */
     protected function buildResults($res)
     {

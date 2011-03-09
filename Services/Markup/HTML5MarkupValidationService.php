@@ -18,8 +18,14 @@ use Liip\ValidationServiceBundle\Helper\DocumentWrapper;
 use Liip\ValidationServiceBundle\Filters\IFilter;
 
 /**
+ * HTML5 markup validation service based on http://validator.nu
+ *
+ * In case of intensive usage of the validation service,  you are strongly encouraged to install
+ * your own instance of the service (see http://about.validator.nu/#src)
+ *
  * @see IMarkupValidator
  * @author Daniel Barsotti
+ * @copyright (c) 2010-2011 Liip
  */
 class HTML5MarkupValidationService extends AbstractValidationService
 {
@@ -29,6 +35,9 @@ class HTML5MarkupValidationService extends AbstractValidationService
      */
     protected $service_uri = 'http://validator.nu/';
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(IFilter $filter = null)
     {
         parent::__construct($filter);
@@ -57,7 +66,7 @@ class HTML5MarkupValidationService extends AbstractValidationService
     /**
      * Validate a web page given its URI
      * @param string $uri
-     * @return array
+     * @return ValidationResult
      */
     public function validateUri($uri)
     {
@@ -68,7 +77,7 @@ class HTML5MarkupValidationService extends AbstractValidationService
     /**
      * Validate a complete HTML document
      * @param string $html
-     * @return array
+     * @return ValidationResult
      */
     public function validateString($html)
     {
@@ -77,9 +86,9 @@ class HTML5MarkupValidationService extends AbstractValidationService
     }
     
     /**
-     * Transform the response of the validator service to a valid IMarkupValidator return array
-     * @param \Services_W3C_HTMLValidator_Response $res
-     * @return array
+     * Transform the response of the validator service in ValidationResult
+     * @param string $res
+     * @return ValidationResult
      */
     protected function buildResults($res)
     {
@@ -114,6 +123,12 @@ class HTML5MarkupValidationService extends AbstractValidationService
         return false;
     }
 
+    /**
+     * Query the validation service
+     * @param string $data The URI to validate when $method = 'GET' or the html to validate when $method = 'POST'
+     * @param string $method Either 'GET or 'POST'
+     * @return string
+     */
     protected function queryValidator($data, $method = 'GET')
     {
         $is_post = false;
